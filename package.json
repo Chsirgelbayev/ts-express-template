@@ -1,0 +1,47 @@
+{
+  "author": "Chingiz Sirgelbayev",
+  "name": "worker-infrastructure",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "src/main.ts",
+  "scripts": {
+    "start": "node -r ts-node/register --inspect ./src/index.ts",
+    "dev": "nodemon",
+    "build": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:fix": "tslint -p . --fix",
+    "format": "prettier \"src/**/*.ts\" -l \"warn\"",
+    "format:fix": "prettier --write \"src/**/*.ts\" -l \"warn\"",
+    "format:lint:fix": "prettier --write \"src/**/*.ts\" -l \"warn\" && npm run lint:fix"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.18",
+    "@types/node": "^20.8.0",
+    "ts-node": "^10.9.1",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "browser": {
+    "callsites": false,
+    "tiny-worker": false,
+    "ts-node": false,
+    "ts-node/register": false,
+    "worker_threads": false,
+    "./dist/master/implementation.js": "./dist/master/implementation.browser.js",
+    "./dist/master/implementation.node.js": false,
+    "./dist/worker/implementation.js": "./dist/worker/implementation.browser.js",
+    "./dist/worker/implementation.tiny-worker.js": false,
+    "./dist/worker/implementation.worker_threads.js": false,
+    "./dist-esm/master/implementation.js": "./dist-esm/master/implementation.browser.js",
+    "./dist-esm/master/implementation.node.js": false,
+    "./dist-esm/worker/implementation.js": "./dist-esm/worker/implementation.browser.js",
+    "./dist-esm/worker/implementation.tiny-worker.js": false,
+    "./dist-esm/worker/implementation.worker_threads.js": false
+  }
+}
